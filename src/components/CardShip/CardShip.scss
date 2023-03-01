@@ -1,0 +1,53 @@
+@use 'src/base';
+
+.card{
+  background-color: #0b344d;
+  box-shadow: 0 0 18px 10px rgb(0 0 0 / 13%);
+  padding: 1rem;
+  &__wrap{
+    display: flex;
+    gap: 1rem
+  }
+  &__description{
+    @extend %font_Roboto_Condensed;
+    color: base.$primary-color;
+    line-height: 25px;
+    margin: 0;
+  }
+  &__title{
+    @extend %font_Roboto_Condensed;
+    color: base.$primary-color;
+    font-size: 24px;
+  }
+  &__img{
+    width: 250px;
+    height: 150px;
+    object-fit: contain;
+    &_wrap{
+      position: relative;
+    }
+  }
+  &__line{
+    height: 1px;
+    display: block;
+    width: 100%;
+    background-color: base.$primary-color;
+    margin: 16px 0;
+  }
+  &__icon{
+    width: 48px;
+    height: 48px;
+    object-fit: contain;
+  }
+  &__prem{
+    width: 28px;
+    height: 28px;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain;
+    display: block;
+    position: absolute;
+    top: 1rem;
+    left: 1rem;
+  }
+}

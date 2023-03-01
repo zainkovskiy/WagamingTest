@@ -1,0 +1,8 @@
+@use 'src/base';
+
+.title{
+  @extend %font_Roboto_Condensed;
+  color: base.$primary-color;
+  border-bottom: 1px solid;
+  font-size: 36px;
+}

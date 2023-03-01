@@ -1,0 +1,38 @@
+@use 'src/base';
+
+.language{
+  position: relative;
+  padding: 0.5rem;
+  &:hover .language__change {
+    visibility: visible;
+  }
+  &__text{
+    @extend %font_Roboto_Condensed;
+    color: base.$primary-color;
+    letter-spacing: 0.32px;
+    font-size: 14px;
+    text-transform: uppercase;
+    cursor: pointer;
+    opacity: 0.77;
+    &_select{
+      border-bottom: 1px solid;
+    }
+    &_change{
+      transition: opacity .3s;
+      &:hover{
+        opacity: 1;
+      }
+    }
+  }
+  &__change{
+    visibility: hidden;
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    background-color: #333333;
+    padding: 1.5rem 0.5rem 0.5rem 0.5rem;
+    right: -1rem;
+    top: 1.7rem;
+  }
+}
