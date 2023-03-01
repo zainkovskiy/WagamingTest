@@ -36,3 +36,14 @@
     }
   }
 }
+
+@media (max-width: 768px){
+  .country-head{
+    height: 200px;
+  }
+}
+@media (max-width: 480px){
+  .country-head{
+    height: 150px;
+  }
+}

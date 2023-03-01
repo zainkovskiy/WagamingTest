@@ -8,3 +8,14 @@
   font-size: 36px;
   line-height: 43px;
 }
+
+@media (max-width: 768px){
+  .headline{
+    margin: 30px;
+  }
+}
+@media (max-width: 480px){
+  .headline{
+    margin: 10px;
+  }
+}

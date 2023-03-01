@@ -1,3 +1,15 @@
-.country{
+.country {
   margin: 0 60px;
+}
+
+@media (max-width: 768px) {
+  .country {
+    margin: 0 30px;
+  }
+}
+
+@media (max-width: 480px) {
+  .country {
+    margin: 0 10px;
+  }
 }
