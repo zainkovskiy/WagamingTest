@@ -23,7 +23,8 @@
   }
   &__links{
     display: flex;
-    gap: 1rem
+    gap: 1rem;
+    justify-content: flex-end;
   }
   &__link{
     @extend %font_Roboto_Condensed;

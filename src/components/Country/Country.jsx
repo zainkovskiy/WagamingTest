@@ -1,53 +1,49 @@
-import React, { useRef } from 'react';
-import { useLocation, useParams } from 'react-router-dom';
-import { useSelector } from 'react-redux';
+import React, { useEffect } from 'react';
+import { useParams } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import { setFilterCountry, resetFilter } from 'actions/ships';
 import { CountryHead } from 'components/CountryHead';
+import { CardShip } from 'components/CardShip';
+import { Title } from 'components/Title';
 import { ButtonUp } from 'components/ButtonUp';
-import { Level } from 'components/Level';
+import { level } from 'assets/levels';
 import './Country.scss';
 
 export const Country = () => {
   const { flag } = useParams();
-  const location = useLocation();
-  const ships = useSelector((state) => state.ships.get('ships').filter(item => item.nation === flag));
-  const sortedShips = useRef([]);
-  const sortShips = () => {
-    let level = 1;
-    while (level <= 11) {
-      if (ships.find((ship) => ship.level === level)) {
-        let test = {
-          level: level,
-          ships: []
-        }
-        for (let ship of ships) {
-          ship.level === level && test.ships.push(ship);
-        }
-        sortedShips.current = [...sortedShips.current, test];
-      }
-      level++;
-    }
-  };
-  sortShips();
+  const ships = useSelector((state) => state.ships.get('filterCountry'));
+  const dispatch = useDispatch();
+  let defaultLevel = 0;
+
+  useEffect(() => {
+    getFiltredShips();
+  }, [])
+
+  const getFiltredShips = () => {
+    dispatch(setFilterCountry(flag));
+    dispatch(resetFilter(flag));
+  }
   return (
     <>
       <div className='container' name='country-top'>
         <div className='country'>
-          <CountryHead
-            url={location.state.url}
-            sortedShips={sortedShips.current}
-            currentFlag={flag}
-          />
+          <CountryHead/>
           {
-            sortedShips.current.map((item, idx) =>
-              <Level
-                key={idx}
-                item={item}
-              />
-            )
+            ships.map((ship, idx) => {
+              if (defaultLevel === ship.level) {
+                return <CardShip key={idx} ship={ship} />
+              } else {
+                defaultLevel = ship.level;
+                return <React.Fragment key={idx}>
+                  <Title title={`Level ${level[ship.level]} `} name={`level${ship.level}`}/>
+                  <CardShip key={idx} ship={ship} />
+                </React.Fragment>
+              }
+            })
           }
         </div>
       </div>
-      <ButtonUp 
+      <ButtonUp
         to='country-top'
         offset={-70}
       />
